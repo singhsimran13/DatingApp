@@ -12,13 +12,13 @@ namespace API;
 public class MessagesController : BaseApiController
 {
     private readonly IUserRepository _userRepository;
-    private readonly IMesageRepository _mesageRepository;
+    private readonly IMesageRepository _messageRepository;
     private readonly IMapper _mapper;
 
     public MessagesController(IUserRepository userRepository, IMesageRepository mesageRepository, IMapper mapper)
     {
         _userRepository = userRepository;
-        _mesageRepository = mesageRepository;
+        _messageRepository = mesageRepository;
         _mapper = mapper;
     }
 
@@ -44,9 +44,9 @@ public class MessagesController : BaseApiController
             Content = createMessage.Content
         };
 
-        _mesageRepository.AddMessage(message);
+        _messageRepository.AddMessage(message);
 
-        if (await _mesageRepository.SaveAllAsync()) return Ok(_mapper.Map<MessageDto>(message));
+        if (await _messageRepository.SaveAllAsync()) return Ok(_mapper.Map<MessageDto>(message));
 
         return BadRequest("Failed to send message");
     }
@@ -56,7 +56,7 @@ public class MessagesController : BaseApiController
     {
         messageParams.Username = User.GetUsername();
 
-        var messages = await _mesageRepository.GetMessagesForUser(messageParams);
+        var messages = await _messageRepository.GetMessagesForUser(messageParams);
 
         Response.AddPaginationHeader(new PaginationHeader(messages.CurrentPage, messages.PageSize, messages.TotalCount, messages.TotalPages));
 
@@ -68,7 +68,7 @@ public class MessagesController : BaseApiController
     {
         var currentUsername = User.GetUsername();
 
-        return Ok(await _mesageRepository.GetMessageThread(currentUsername, username));
+        return Ok(await _messageRepository.GetMessageThread(currentUsername, username));
     }
 
     [HttpDelete("{id}")]
@@ -76,7 +76,7 @@ public class MessagesController : BaseApiController
     {
         var username = User.GetUsername();
 
-        var message = await _mesageRepository.GetMessage(id);
+        var message = await _messageRepository.GetMessage(id);
 
         if (message.SenderUsername != username && message.RecipientUsername != username)
             return Unauthorized();
@@ -86,10 +86,10 @@ public class MessagesController : BaseApiController
 
         if (message.SenderDeleted && message.RecipientDeleted)
         {
-            _mesageRepository.DeleteMessage(message);
+            _messageRepository.DeleteMessage(message);
         }
 
-        if (await _mesageRepository.SaveAllAsync()) return Ok();
+        if (await _messageRepository.SaveAllAsync()) return Ok();
 
         return BadRequest("Problem deleting the message");
     }
