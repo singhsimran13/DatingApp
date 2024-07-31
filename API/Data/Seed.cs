@@ -9,6 +9,12 @@ namespace API.Data;
 
 public class Seed
 {
+    public static async Task ClearConnections(DataContext context)
+    {
+        context.Connections.RemoveRange(context.Connections);
+        await context.SaveChangesAsync();
+    }
+
     public static async Task SeedUser(UserManager<AppUser> userManager, RoleManager<AppRole> roleManager)
     {
 

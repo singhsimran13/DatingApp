@@ -45,7 +45,7 @@ public class DataContext : IdentityDbContext<AppUser, AppRole, int, IdentityUser
         .HasOne(t => t.TargetUser)
         .WithMany(l => l.LikedByUsers)
         .HasForeignKey(t => t.TargetUserId)
-        .OnDelete(DeleteBehavior.Cascade);
+        .OnDelete(DeleteBehavior.NoAction);
 
         modelBuilder.Entity<Message>()
         .HasOne(u => u.Recipient)
