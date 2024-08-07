@@ -16,8 +16,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18.10'
+
+      - name: Install Angular CLI
+        run: npm install -g @angular/cli@16.2
+
+      - name: Install deps and build angular app
+        run: |
+          cd client
+          npm install
+          ng build
+
+
       - name: Set up .NET Core
-        uses: actions/setup-dotnet@v4
+        uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '8.x'
 
@@ -62,4 +77,3 @@ jobs:
           app-name: 'datin-app'
           slot-name: 'Production'
           package: .
-          
