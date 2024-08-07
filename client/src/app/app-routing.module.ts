@@ -6,7 +6,7 @@ import { MemberDetailComponent } from './members/member-detail/member-detail.com
 import { ListsComponent } from './lists/lists.component';
 import { MessagesComponent } from './messages/messages.component';
 import { AuthGuard } from './_guards/auth.guard';
-import { TestErrorComponent } from './errors/test-error/test-error.component';
+// import { TestErrorComponent } from './errors/test-error/test-error.component';
 import { NotFoundComponent } from './errors/not-found/not-found.component';
 import { ServerErrorComponent } from './errors/server-error/server-error.component';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
@@ -14,9 +14,12 @@ import { preventUnsavedChangesGuard } from './_guards/prevent-unsaved-changes.gu
 import { memberDetailedResolver } from './_resolvers/member-detailed.resolver';
 import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
+import { RegisterComponent } from './register/register.component';
+import { registerGuard } from './_guards/register.guard';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [registerGuard] },
   {
     path: '',
     runGuardsAndResolvers: 'always',
@@ -30,7 +33,7 @@ const routes: Routes = [
       { path: 'admin', component: AdminPanelComponent, canActivate: [adminGuard] },
     ]
   },
-  { path: 'errors', component: TestErrorComponent },
+  // { path: 'errors', component: TestErrorComponent },
   { path: 'not-found', component: NotFoundComponent },
   { path: 'server-error', component: ServerErrorComponent },
   { path: '**', component: NotFoundComponent, pathMatch: 'full' },
