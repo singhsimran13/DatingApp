@@ -6,7 +6,6 @@ import { Message } from '../_models/message';
 import { HubConnection, HubConnectionBuilder } from '@microsoft/signalr';
 import { BehaviorSubject, take } from 'rxjs';
 import { User } from '../_models/user';
-import { group } from '@angular/animations';
 import { Group } from '../_models/group';
 import { BusyService } from './busy.service';
 
