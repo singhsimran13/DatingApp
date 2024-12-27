@@ -1,4 +1,4 @@
-import { Component, Input, Self } from '@angular/core';
+import { Component, ElementRef, HostListener, Input, Self, ViewChild } from '@angular/core';
 import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 
 @Component({
@@ -8,8 +8,19 @@ import { ControlValueAccessor, FormControl, NgControl } from '@angular/forms';
 })
 export class TextInputComponent implements ControlValueAccessor {
 
+  @ViewChild('errorIcon', { static: true }) errorIcon!: ElementRef;
+
   @Input() label: string = '';
   @Input() type: string = 'text';
+  showErrors: boolean = false;
+
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    if (!this.errorIcon?.nativeElement.contains(event.target as Node) && this.showErrors) {
+      this.showErrors = false;
+    }
+  }
 
   constructor(@Self() public ngControl: NgControl) {
     this.ngControl.valueAccessor = this;
@@ -23,5 +34,13 @@ export class TextInputComponent implements ControlValueAccessor {
 
   get control(): FormControl {
     return this.ngControl.control as FormControl;
+  }
+
+  onErrorIconClick() {
+    this.showErrors = true;
+  }
+
+  onHover() {
+    console.log('hovering')
   }
 }

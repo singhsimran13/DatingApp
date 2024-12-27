@@ -1,4 +1,19 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+* {
+  font-size: 16px;
+}
+
+@layer components {
+  .bg-primary {
+    background-color: #4f46e5;
+  }
+}
+
 .tab-panel {
   border: 1px solid #ddd;
   padding: 10px;
@@ -28,7 +43,7 @@
 }
 
 .member-tabset>.nav-tabs>li.active {
-  border-bottom: 4px solid #E95420;
+  border-bottom: 4px solid #e95420;
   position: relative;
 }
 

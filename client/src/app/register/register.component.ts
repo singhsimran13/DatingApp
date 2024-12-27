@@ -16,6 +16,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup = new FormGroup({});
   maxDate: Date = new Date();
   validationErrors: string[] | undefined;
+  showPassword: boolean = false;
 
   constructor(
     private accountService: AccountService,
@@ -72,5 +73,9 @@ export class RegisterComponent implements OnInit {
     let theDob = new Date(dob);
     return new Date(theDob.setMinutes(theDob.getMinutes() - theDob.getTimezoneOffset()))
       .toISOString().slice(0, 10);
+  }
+
+  onCancel() {
+
   }
 }

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+<!-- <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
   <div class="container">
     <a class="navbar-brand" routerLink="/" routerLinkActive="active">Dating App</a>
 
@@ -17,10 +17,12 @@
           <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>
         </li>
       </ng-container>
-      <!-- <li class="nav-item">
+       -->
+<!-- <li class="nav-item">
         <a class="nav-link" routerLink="/errors" routerLinkActive="active">Errors</a>
       </li> -->
-    </ul>
+
+<!-- </ul>
 
     <div class="dropdown" *ngIf="(accountService.currentUser$ | async) as User" dropdown>
       <img src="{{User.photoUrl || './assets/user.png'}}" alt="user photo">
@@ -39,5 +41,35 @@
         placeholder="Password">
       <button class="btn btn-success" type="submit">Login</button>
     </form>
+  </div>
+</nav> -->
+
+
+<nav class="flex bg-navbar-color" style="background-image: url('../../assets/heart_sync_logo_1.webp');"
+  class="bg-center p-6 pl-16">
+  <div class="flex justify-between items-center w-full m-6mx-16">
+    <div style="background-image: url('../../assets/heart_sync_logo_1.webp'); background-size: 200%;"
+      class="h-10 w-10 bg-cover bg-center"></div>
+    <div>
+
+      <ng-template [ngIf]="!(accountService.currentUser$ | async)" [ngIfElse]="userLoggedOut">
+        <button class="w-24 rounded-lg border-2 border-transparent hover:border-brand-primary" routerLink="/login">
+          <span class="text-brand-primary text-lg font-medium">Log</span>
+          <span class="text-brand-secondary text-lg font-medium">In</span>
+        </button>
+
+        <button class="w-24 rounded-lg border-2 border-transparent hover:border-brand-primary" routerLink="/register">
+          <span class="text-brand-primary text-lg font-medium">Sign</span>
+          <span class="text-brand-secondary text-lg font-medium">Up</span>
+        </button>
+      </ng-template>
+
+      <ng-template #userLoggedOut>
+        <button class="w-24 rounded-lg border-2 border-transparent hover:border-brand-primary" (click)="logout();">
+          <span class="text-brand-primary text-lg font-medium">Log</span>
+          <span class="text-brand-secondary text-lg font-medium">Out</span>
+        </button>
+      </ng-template>
+    </div>
   </div>
 </nav>

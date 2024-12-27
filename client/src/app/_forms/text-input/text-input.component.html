@@ -1,7 +1,10 @@
-<div class="mb-3">
-  <input [type]="type" [class.is-invalid]="control.touched && control.invalid" class="form-control"
+<!-- <div class="mb-3 w-fit mx-auto">
+  <label [for]="label" class="block">{{label}}</label>
+  <input [id]="label" [type]="type" [class.is-invalid]="control.touched && control.invalid" class="form-control"
     [formControl]="control" [placeholder]="label">
-  <div class="invalid-feedback" *ngIf="control.errors?.['required']">Please enter a {{label}}
+  <div class="invalid-feedback w-fit" *ngIf="control.errors?.['required'] && control.errors?.['touched']">Please enter
+    a
+    {{label}}
   </div>
   <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">{{label}} must be a least
     {{control.errors?.['minlength'].requiredLength}} characters
@@ -11,4 +14,147 @@
   </div>
   <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">Passwords do not match
   </div>
+</div> -->
+
+
+<div class="w-fit mx-auto mb-2">
+  <label [for]="label" class="block w-fit text-sm/6 font-medium text-gray-900">{{label}}</label>
+  <div class="mt-1.">
+    <div
+      class="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600">
+      <input [id]="label" [type]="type"
+        class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
+        [placeholder]="label">
+      <div #errorIcon *ngIf="control.touched && control.invalid"
+        class="grid shrink-0 grid-cols-1 focus-within:relative cursor-pointer" (click)="showErrors = !showErrors">
+        <svg
+          class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-red-500 sm:size-4"
+          xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"
+          data-slot="icon">
+          <path fill-rule="evenodd"
+            d="M18 10a8 8 0 1 1-16 0 8 8 0 0 1 16 0Zm-7-4a1 1 0 1 1-2 0 1 1 0 0 1 2 0ZM9 9a.75.75 0 0 0 0 1.5h.253a.25.25 0 0 1 .244.304l-.459 2.066A1.75 1.75 0 0 0 10.747 15H11a.75.75 0 0 0 0-1.5h-.253a.25.25 0 0 1-.244-.304l.459-2.066A1.75 1.75 0 0 0 9.253 9H9Z"
+            clip-rule="evenodd"></path>
+        </svg>
+        <div *ngIf="showErrors"
+          class="pointer-events-none absolute right-0 z-10 mt-2 w-auto origin-top-right rounded-md bg-red-100 shadow-lg ring-1 ring-black/5 focus:outline-none text-red-500"
+          role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+          <!-- <ul class="m-0 p-2 pl-6 list-disc" role="none">
+            <li class="pb-1 text-xs">
+              Please enter a {{label}}
+            </li>
+            <li class="pb-1 text-xs">
+              {{label}} must be a least {{control.errors?.['minlength']?.requiredLength}} characters
+            </li>
+            <li class="pb-1 text-xs">{{label}} must be at most
+              {{control.errors?.['maxlength']?.requiredLength}} characters
+            </li>
+            <li class="text-xs">Passwords do not match
+            </li>
+          </ul> -->
+          <ul class="m-0 p-2 pl-6 list-disc" role="none">
+            <li class="pb-1 text-xs" *ngIf="control.errors?.['required'] && control.errors?.['touched']">
+              Please enter a {{label}}
+            </li>
+            <li class="pb-1 text-xs" *ngIf="control.errors?.['minlength']">
+              {{label}} must be a least {{control.errors?.['minlength']?.requiredLength}} characters
+            </li>
+            <li class="pb-1 text-xs" *ngIf="control.errors?.['maxlength']">{{label}} must be at most
+              {{control.errors?.['maxlength']?.requiredLength}} characters
+            </li>
+            <li class="text-xs" *ngIf="control.errors?.['notMatching']">Passwords do not match
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+<!-- <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['required'] && control.errors?.['touched']">
+    Please enter a {{label}}
+  </p>
+  <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['minlength']">
+    {{label}} must be a least {{control.errors?.['minlength'].requiredLength}} characters
+  </p>
+  <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['maxlength']">{{label}} must be at most
+    {{control.errors?.['maxlength'].requiredLength}} characters
+  </p>
+  <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['notMatching']">Passwords do not match
+  </p> -->
+
+
+
+
+
+
+<!-- <div class="invalid-feedback w-fit text-sm" *ngIf="control.errors?.['required'] && control.errors?.['touched']">
+      Please enter a {{label}}
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['minlength']">{{label}} must be a least
+      {{control.errors?.['minlength'].requiredLength}} characters
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['maxlength']">{{label}} must be at most
+      {{control.errors?.['maxlength'].requiredLength}} characters
+    </div>
+    <div class="invalid-feedback" *ngIf="control.errors?.['notMatching']">Passwords do not match
+    </div> -->
+
+
+
+
+
+
+
+
+<!-- <div
+    class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black/5 focus:outline-none"
+    role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1">
+    <div class="py-1" role="none">
+      <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['required'] && control.errors?.['touched']">
+        Please enter a {{label}}
+      </p>
+      <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['minlength']">
+        {{label}} must be a least {{control.errors?.['minlength'].requiredLength}} characters
+      </p>
+      <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['maxlength']">{{label}} must be at most
+        {{control.errors?.['maxlength'].requiredLength}} characters
+      </p>
+      <p class="px-4 py-2 text-sm" *ngIf="control.errors?.['notMatching']">Passwords do not match
+      </p> -->
+<!-- <form method="POST" action="#" role="none">
+      <button type="submit" class="block w-full px-4 py-2 text-left text-sm text-gray-700" role="menuitem" tabindex="-1"
+        id="menu-item-3">Sign out</button>
+    </form> -->
+<!-- </div>
+  </div> -->
+
+
+
+
+
+
+<!-- <div class="w-fit mx-auto">
+  <label [for]="label" class="block w-fit text-sm/6 font-medium text-gray-900">{{label}}</label>
+  <div class="mt-2">
+    <div
+      class="flex items-center rounded-md bg-white pl-3 outline outline-1 -outline-offset-1 outline-gray-300 has-[input:focus-within]:outline has-[input:focus-within]:outline-2 has-[input:focus-within]:-outline-offset-2 has-[input:focus-within]:outline-indigo-600 w-4/5">
+      <div class="shrink-0 select-none text-base text-gray-500 sm:text-sm/6">$</div>
+      <input type="text" [id]="label"
+        class="block min-w-0 grow py-1.5 pl-1 pr-3 text-base text-gray-900 placeholder:text-gray-400 focus:outline focus:outline-0 sm:text-sm/6"
+        [placeholder]="label">
+      <div class="grid shrink-0 grid-cols-1 focus-within:relative">
+        <select id="currency" name="currency" aria-label="Currency"
+          class="col-start-1 row-start-1 w-full appearance-none rounded-md py-1.5 pl-3 pr-7 text-base text-gray-500 placeholder:text-gray-400 focus:outline focus:outline-2 focus:-outline-offset-2 focus:outline-indigo-600 sm:text-sm/6">
+          <option>USD</option>
+          <option>CAD</option>
+          <option>EUR</option>
+        </select>
+        <svg
+          class="pointer-events-none col-start-1 row-start-1 mr-2 size-5 self-center justify-self-end text-gray-500 sm:size-4"
+          viewBox="0 0 16 16" fill="currentColor" aria-hidden="true" data-slot="icon">
+          <path fill-rule="evenodd"
+            d="M4.22 6.22a.75.75 0 0 1 1.06 0L8 8.94l2.72-2.72a.75.75 0 1 1 1.06 1.06l-3.25 3.25a.75.75 0 0 1-1.06 0L4.22 7.28a.75.75 0 0 1 0-1.06Z"
+            clip-rule="evenodd" />
+        </svg>
+      </div>
+    </div>
+  </div> -->

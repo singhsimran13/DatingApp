@@ -1,13 +1,29 @@
-<div class="container mt-5">
-  <div style="text-align: center;">
-    <h1>Find your match</h1>
-    <p class="lead">
-      Come on in to view your matches... all you need to do is sign up!
+<div class="absolute -z-10 top-0 bg-cover bg-center w-full h-screen"
+  style="background-image: url('../../assets/city_couple_sitting.jpg'); background-position: 100%;">
+  <div class="w-3/4 h-full from-black"
+    style="background: linear-gradient(to right, rgba(255, 255, 255, .98), rgba(255, 255, 255, 0));">
+  </div>
+
+</div>
+<div class="flex mt-4 p-16 h-4/5">
+  <div class="w-2/4">
+    <p class="text-2xl text-brand-primary-light">Where Connections Spark and Relationships Blossom</p>
+    <p class="text-lg my-6 text-brand-primary-dark">
+      Welcome to
+      <span class="text-brand-primary text-5xl">Heart</span> <span class="text-brand-secondary text-5xl">Sync</span> ,
+      where meaningful connections are just a click away. We believe that the best
+      relationships start with
+      authenticity and genuine interactions. Whether you're seeking friendship, love, or something in between, our
+      platform is designed to help you find someone who truly complements you.
     </p>
-    <div class="text-center">
+    <p class="text-lg my-6 text-brand-primary-dark">
+      Join a community where you’re valued for who you are, and let our advanced matching tools guide you to someone
+      truly special. Begin your story today—it’s time to turn connections into something extraordinary.
+    </p>
+    <!-- <div class="text-center">
       <button routerLink="/register" class="btn btn-primary btn-lg me-2">Register</button>
       <button class="btn btn-primary btn-info btn-lg">Learn more</button>
-    </div>
+    </div> -->
   </div>
 
   <!-- <div *ngIf="registerMode" class="container">
@@ -18,3 +34,6 @@
     </div>
   </div> -->
 </div>
+
+
+<router-outlet></router-outlet>

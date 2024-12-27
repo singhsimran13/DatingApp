@@ -16,10 +16,16 @@ import { AdminPanelComponent } from './admin/admin-panel/admin-panel.component';
 import { adminGuard } from './_guards/admin.guard';
 import { RegisterComponent } from './register/register.component';
 import { registerGuard } from './_guards/register.guard';
+import { LoginComponent } from './login/login.component';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
-  { path: 'register', component: RegisterComponent, canActivate: [registerGuard] },
+  {
+    path: '', component: HomeComponent,
+    children: [
+      { path: 'register', component: RegisterComponent, canActivate: [registerGuard] },
+      { path: 'login', component: LoginComponent }
+    ]
+  },
   {
     path: '',
     runGuardsAndResolvers: 'always',
